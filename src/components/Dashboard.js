@@ -1,6 +1,12 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import fire_app from "../base";
+import { Typography, Button } from "@material-ui/core";
 
 export default function Dashboard() {
-  return <Typography>Dashboard</Typography>;
+  return(
+      <React.Fragment>
+          <Typography>Welcome to your Dashboard</Typography>
+          <Button onClick={() => fire_app.auth().signOut()}>Sign Out</Button>
+      </React.Fragment>
+  );
 }
