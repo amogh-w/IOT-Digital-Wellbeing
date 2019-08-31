@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { Typography, TextField, Button } from "@material-ui/core";
 import fire_app from "../base";
