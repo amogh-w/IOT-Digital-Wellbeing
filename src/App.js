@@ -11,14 +11,14 @@ import PrivateRoute from "./components/PrivateRoute";
 export default function App() {
   return (
     <AuthProvider>
-      <Navbar />
-      <Paper style={{ padding: "20px", margin: "20px" }} square>
-        <Router>
+      <Router>
+        <Navbar />
+        <Paper style={{ padding: "20px", margin: "20px" }} square>
           <PrivateRoute exact path="/" component={Dashboard}></PrivateRoute>
           <Route exact path="/login" component={Login}></Route>
           <Route exact path="/signup" component={SignUp}></Route>
-        </Router>
-      </Paper>
+        </Paper>
+      </Router>
     </AuthProvider>
   );
 }
