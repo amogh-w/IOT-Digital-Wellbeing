@@ -4,7 +4,7 @@ import fire_app from "./base";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState('s');
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     fire_app.auth().onAuthStateChanged(setCurrentUser);
