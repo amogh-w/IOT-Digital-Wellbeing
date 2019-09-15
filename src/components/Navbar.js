@@ -17,7 +17,10 @@ const Navbar = () => {
               <Tab label="SignUp" component={Link} to="/signup"></Tab>
             </React.Fragment>
           ) : (
-            <Tab label="Dashboard" component={Link} to="/"></Tab>
+            <React.Fragment>
+              <Tab label="Dashboard" component={Link} to="/"></Tab>
+              <Tab label="About" component={Link} to="/about"></Tab>
+            </React.Fragment>
           )}
         </Tabs>
       </Toolbar>

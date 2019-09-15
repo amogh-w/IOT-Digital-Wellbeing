@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import About from "./components/About";
 import { AuthProvider } from "./auth";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -17,6 +18,7 @@ export default function App() {
           <PrivateRoute exact path="/" component={Dashboard}></PrivateRoute>
           <Route exact path="/login" component={Login}></Route>
           <Route exact path="/signup" component={SignUp}></Route>
+          <Route exact path="/about" component={About}></Route>
         </Paper>
       </Router>
     </AuthProvider>
