@@ -7,11 +7,19 @@ import {
   TableHead,
   TableRow
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_EMOTIONS_ALL } from "../queries/queries";
 import * as dayjs from "dayjs";
 
+const useStyles = makeStyles({
+  table: {
+    margin: "16px 8px"
+  }
+});
+
 export default function EmotionList() {
+  const classes = useStyles();
   const { loading, error, data } = useQuery(GET_EMOTIONS_ALL);
 
   console.log(data);
@@ -20,7 +28,7 @@ export default function EmotionList() {
   if (error) return <Typography>Error...</Typography>;
 
   return (
-    <Table>
+    <Table className={classes.table}>
       <TableHead>
         <TableRow>
           <TableCell>User</TableCell>
