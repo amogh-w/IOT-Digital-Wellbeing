@@ -12,6 +12,7 @@ import {
   CardContent
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import EmotionList from "./EmotionList";
 
 const useStyles = makeStyles({
   buttons: {
@@ -69,6 +70,7 @@ export default function Dashboard() {
           </Button>
         </CardContent>
       </Card>
+      <EmotionList></EmotionList>
     </React.Fragment>
   );
 }
