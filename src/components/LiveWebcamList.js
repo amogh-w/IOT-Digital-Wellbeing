@@ -4,12 +4,13 @@ import { List, ListItem, Typography } from "@material-ui/core";
 const LiveWebcamList = ({ emotionArray }) => {
   return (
     <div>
+      <Typography variant={"h6"}>Predictions</Typography>
       <List>
-        {emotionArray.map(d => {
+        {emotionArray.map(emotion => {
           return (
-            <ListItem key={d["0"]}>
+            <ListItem key={emotion["0"]}>
               <Typography>
-                {d["0"]}: {d["1"].toFixed(2)}
+                {emotion["0"]}: {emotion["1"].toFixed(2)}
               </Typography>
             </ListItem>
           );
