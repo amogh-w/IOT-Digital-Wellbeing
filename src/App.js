@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import About from "./components/About";
+import LiveWebcamDetections from "./components/LiveWebcamDetections";
 import { AuthProvider } from "./auth";
 import PrivateRoute from "./components/PrivateRoute";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
@@ -32,6 +33,11 @@ export default function App() {
             <Route exact path="/login" component={Login}></Route>
             <Route exact path="/signup" component={SignUp}></Route>
             <Route exact path="/about" component={About}></Route>
+            <Route
+              exact
+              path="/livewebcam"
+              component={LiveWebcamDetections}
+            ></Route>
           </Paper>
         </Router>
       </ApolloProvider>

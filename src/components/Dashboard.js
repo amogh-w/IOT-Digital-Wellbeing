@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import EmotionList from "./EmotionList";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   buttons: {
@@ -67,6 +68,17 @@ export default function Dashboard() {
             onClick={() => fire_app.auth().signOut()}
           >
             Sign Out
+          </Button>
+          <Button className={classes.buttons} variant="outlined">
+            Pi Connection
+          </Button>
+          <Button
+            className={classes.buttons}
+            variant="outlined"
+            to="/livewebcam"
+            component={Link}
+          >
+            Live Webcam
           </Button>
         </CardContent>
       </Card>
