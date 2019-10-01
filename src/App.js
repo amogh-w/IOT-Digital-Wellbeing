@@ -6,6 +6,8 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import About from "./components/About";
+import PiConnection from "./components/PiConnection";
+import PiHost from "./components/PiHost";
 import LiveWebcamDetections from "./components/LiveWebcamDetections";
 import { AuthProvider } from "./auth";
 import PrivateRoute from "./components/PrivateRoute";
@@ -38,6 +40,8 @@ export default function App() {
               path="/livewebcam"
               component={LiveWebcamDetections}
             ></Route>
+            <Route exact path="/piconnection" component={PiConnection}></Route>
+            <Route exact path="/pihost" component={PiHost}></Route>
           </Paper>
         </Router>
       </ApolloProvider>

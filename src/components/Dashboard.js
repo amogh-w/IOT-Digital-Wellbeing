@@ -69,7 +69,12 @@ export default function Dashboard() {
           >
             Sign Out
           </Button>
-          <Button className={classes.buttons} variant="outlined">
+          <Button
+            className={classes.buttons}
+            variant="outlined"
+            to="/piconnection"
+            component={Link}
+          >
             Pi Connection
           </Button>
           <Button
