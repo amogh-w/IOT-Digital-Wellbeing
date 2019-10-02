@@ -21,9 +21,7 @@ const useStyles = makeStyles({
 export default function EmotionList() {
   const classes = useStyles();
   const { loading, error, data } = useQuery(GET_EMOTIONS_ALL);
-
-  console.log(data);
-
+  
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography>Error...</Typography>;
 

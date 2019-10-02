@@ -4,10 +4,13 @@ console.log("listening on port 8000");
 
 io.on("connection", client => {
   console.log("Something Connected");
-  client.on("grabImage", () => {
-    console.log("Request to GrabImage");
+  client.on("hostIsReady", () => {
+    client.broadcast.emit("hostIsReadyForConnection");
   });
-  client.on("sendImage", values => {
-    client.broadcast.emit("sendImageValues", values);
+  client.on("askingForImage", () => {
+    client.broadcast.emit("retrieveImage");
+  });
+  client.on("theImageFromHost", snapshot => {
+    client.broadcast.emit("theImageToConnection", snapshot);
   });
 });
