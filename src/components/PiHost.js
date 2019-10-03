@@ -9,6 +9,8 @@ export default function PiHost() {
     });
   }, []);
 
+  const [host, setHost] = useState("");
+
   return (
     <div>
       <button onClick={() => socket.emit("checkStatusOfConnection")}></button>
