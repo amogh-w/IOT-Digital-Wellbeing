@@ -4,11 +4,15 @@ console.log("listening on port 8000");
 io.on("connection", client => {
   console.log("a client connected");
 
-  client.on("checkStatusOfHost", () => {
-    client.broadcast.emit("checkStatusOfHost");
+  client.on("hostIsReady", () => {
+    client.broadcast.emit("hostIsReady");
   });
 
-  client.on("checkStatusOfConnection", () => {
-    client.broadcast.emit("checkStatusOfConnection");
+  client.on("getImageRequest", () => {
+    client.broadcast.emit("getImageRequest");
+  });
+
+  client.on("imageTaken", snapshot => {
+    client.broadcast.emit("imageTaken", snapshot);
   });
 });
