@@ -3,13 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.1",
     "@material-ui/core": "^4.3.3",
     "@material-ui/styles": "^4.3.3",
+    "apollo-boost": "^0.4.4",
+    "cors": "^2.8.5",
+    "dayjs": "^1.8.16",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "face-api.js": "^0.21.0",
     "firebase": "^6.5.0",
+    "graphql": "^14.5.7",
+    "graphql-iso-date": "^3.6.1",
+    "mongoose": "^5.7.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "react-webcam": "^3.1.0",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
