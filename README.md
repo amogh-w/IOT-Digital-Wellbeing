@@ -1,68 +1,158 @@
+# IOT-Digital-Wellbeing
+
+![0](https://github.com/amogh-w/IOT-Digital-Wellbeing/blob/master/media/cover.png)
+
+Presenting your personal Mood Detector and Mental Health Assistant. It uses React.js for frontend, while MongoDB + GraphQL as its backend. It can also work with multiple devices at the same time, primarily on the Raspberry Pi.
+
+Proposed Block Diagram
+
+![1](https://github.com/amogh-w/IOT-Digital-Wellbeing/blob/master/media/0.png)
+
+Login Screen
+
+![2](https://github.com/amogh-w/IOT-Digital-Wellbeing/blob/master/media/1.png)
+
+Sign Up Screen
+
+![3](https://github.com/amogh-w/IOT-Digital-Wellbeing/blob/master/media/2.png)
+
+Firebase Dashboard
+
+![4](https://github.com/amogh-w/IOT-Digital-Wellbeing/blob/master/media/3.png)
+
+Live Predictions
+
+![4](https://github.com/amogh-w/IOT-Digital-Wellbeing/blob/master/media/4.png)
+
+## Schemas:
+
+User Schema:
+
+```
+const userSchema = new Schema({
+  name: String,
+  age: Number
+});
+
+```
+
+Emotion Schema:
+
+```
+const emotionSchema = new Schema({
+  detectedEmotion: String,
+  date: Date,
+  userId: String
+});
+```
+
+## Code Snippets
+
+GraphQL Root Query:
+
+```
+const RootQuery = new GraphQLObjectType({
+  name: "RootQueryType",
+  fields: {
+    emotion: {
+      type: EmotionType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Book.findById(args.id);
+      }
+    },
+    user: {
+      type: UserType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return User.findById(args.id);
+      }
+    },
+    emotions: {
+      type: GraphQLList(EmotionType),
+      resolve(parent, args) {
+        return Emotion.find({});
+      }
+    },
+    users: {
+      type: GraphQLList(UserType),
+      resolve(parent, args) {
+        return User.find({});
+      }
+    }
+  }
+});
+```
+
+Enabling Feed from the Webcam:
+
+```
+  const getImage = React.useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setSnapshot(imageSrc);
+  }, [webcamRef]);
+
+  socket.on("getImageRequest", () => {
+    setInterval(() => {
+      getImage();
+      socket.emit("imageTaken", image.current);
+    }, 100);
+  });
+```
+
+Detecting Emotions:
+
+```
+  useEffect(() => {
+    async function loadModels() {
+      await faceapi.nets.tinyFaceDetector.loadFromUri("/models");
+      await faceapi.nets.faceExpressionNet.loadFromUri("/models");
+    }
+    loadModels();
+    const videoCanvas = document.getElementById("videoCanvas");
+    setInterval(async () => {
+      const detections = await faceapi
+        .detectAllFaces(videoCanvas, new faceapi.TinyFaceDetectorOptions())
+        .withFaceExpressions();
+      try {
+        setEmotion(detections["0"].expressions);
+      } catch (error) {
+        console.log("No Face Detected...");
+      }
+    }, 100);
+  }, []);
+```
+
+## Resources:
+
+- [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html) - Get started with React here
+- [Material-UI](https://material-ui.com/) - React components for faster and easier web development
+- [TensorFlow.js](https://www.tensorflow.org/js) - A library for machine learning in Javascript
+- [face-api.js](https://github.com/justadudewhohacks/face-api.js/) - JavaScript face recognition API for the browser and nodejs implemented on top of tensorflow.js core
+- [Express.js](https://expressjs.com/) - A web application framework for Node.js
+- [GraphQL](https://graphql.org/) - An open-source data query and manipulation language for APIs
+- [Mongoose](https://mongoosejs.com/docs/) - An Object Data Modeling (ODM) library for MongoDB and Node
+- [Firebase](https://firebase.google.com/) - Build apps fast, without managing infrastructure
+- [Socket.IO](https://socket.io/) - A JavaScript library for realtime web applications. It enables realtime, bi-directional communication between web clients and servers
+
+## Available Scripts:
+
+For the Raspberry Pi, in the pi directory, you can run: `nodemon piserver`
+
+A web-socket server will get started at [http://localhost:8000](http://localhost:8000) which will enable the transfer of webcam feed.
+
+In the server directory, you can run: `nodemon server`
+
+Server will be running at [http://localhost:5000](http://localhost:5000). It is required for MongoDB cluster connectivity and GraphQL endpoints.
+
+In the src directory, you can run: `yarn start`
+
+The website will be live at [http://localhost:3000](http://localhost:3000).
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Team Members:
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+| [Amogh Warkhandkar](https://github.com/amogh-w) | [Omkar Bhambure](https://github.com/blablabluomie) | [Nupoor Dode](https://github.com/NupoorD) |
